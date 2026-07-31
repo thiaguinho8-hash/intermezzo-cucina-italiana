@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intermezzo — Cucina Italiana | Bruxelles</title>
+<meta name="description" content="Intermezzo, cucina italiana au cœur de Bruxelles. Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6ec;
+    --cream-2: #f1e8d4;
+    --forest: #142a1e;
+    --forest-2: #1e3d2a;
+    --forest-3: #26492f;
+    --gold: #c6a15b;
+    --gold-light: #e6cd8f;
+    --wine: #6d2330;
+    --text: #241f18;
+    --muted: #6c6252;
+    --muted-light: rgba(250,246,236,0.72);
+    --shadow: 0 20px 50px rgba(20,42,30,0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Lato', 'Segoe UI', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .brand-word {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin: 0;
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Divider ornament ---------- */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 18px 0 26px;
+    color: var(--gold);
+  }
+  .ornament .line {
+    width: 46px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor);
+  }
+  .ornament .line.right { background: linear-gradient(90deg, currentColor, transparent); }
+  .ornament svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* ---------- Header / Nav ---------- */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 0;
+    transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+  }
+  header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  header.scrolled {
+    background: rgba(20,42,30,0.96);
+    padding: 10px 0;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    backdrop-filter: blur(6px);
+  }
+  .logo {
+    color: var(--cream);
+    font-size: 1.35rem;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .logo small {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 2px;
+  }
+  nav.links {
+    display: flex;
+    gap: 30px;
+    margin-left: auto;
+  }
+  nav.links a {
+    color: var(--muted-light);
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  nav.links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.25s ease;
+  }
+  nav.links a:hover,
+  nav.links a.active { color: var(--gold-light); }
+  nav.links a:hover::after,
+  nav.links a.active::after { width: 100%; }
+
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+    background: rgba(250,246,236,0.08);
+    border: 1px solid rgba(198,161,91,0.35);
+    border-radius: 20px;
+    padding: 3px;
+  }
+  .lang-switch button {
+    background: transparent;
+    border: none;
+    color: var(--muted-light);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 6px 11px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-switch button:hover { color: var(--gold-light); }
+  .lang-switch button.active {
+    background: var(--gold);
+    color: var(--forest);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    display: block;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(198,161,91,0.18), transparent 55%),
+      radial-gradient(circle at 85% 80%, rgba(198,161,91,0.12), transparent 50%),
+      linear-gradient(160deg, var(--forest) 0%, var(--forest-2) 55%, var(--forest) 100%);
+    overflow: hidden;
+    padding: 140px 24px 100px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 26px);
+    pointer-events: none;
+  }
+  .hero .monogram {
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: min(60vw, 640px);
+    color: rgba(255,255,255,0.025);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 720px; }
+  .hero .eyebrow { color: var(--gold-light); }
+  .hero h1 {
+    color: var(--cream);
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    margin: 10px 0 6px;
+  }
+  .hero h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  .hero p.tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--muted-light);
+    margin: 14px 0 34px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 28px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--gold);
+    transition: all 0.25s ease;
+    font-family: 'Lato', sans-serif;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-solid {
+    background: var(--gold);
+    color: var(--forest);
+  }
+  .btn-solid:hover { background: var(--gold-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--gold-light);
+  }
+  .btn-outline:hover { background: rgba(198,161,91,0.14); }
+
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(250,246,236,0.08);
+    border: 1px solid rgba(198,161,91,0.4);
+    padding: 9px 18px;
+    border-radius: 30px;
+    color: var(--cream);
+    font-size: 0.85rem;
+  }
+  .rating-pill .stars { display: flex; gap: 2px; }
+  .rating-pill svg { width: 14px; height: 14px; fill: var(--gold-light); }
+
+  /* status badge */
+  .status-badge {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted-light);
+    margin-top: 6px;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #7fae7f;
+    box-shadow: 0 0 0 4px rgba(127,174,127,0.18);
+  }
+  .status-badge.closed .status-dot {
+    background: #b5675f;
+    box-shadow: 0 0 0 4px rgba(181,103,95,0.18);
+  }
+
+  /* ---------- Section shells ---------- */
+  section { padding: 110px 0; position: relative; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 10px; }
+  .section-head h2 { font-size: clamp(2rem, 4vw, 2.7rem); }
+  .section-head p { color: var(--muted); font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; margin-top: 6px;}
+
+  /* ---------- Sobre ---------- */
+  #sobre { background: var(--cream); }
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .sobre-visual {
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    background: linear-gradient(155deg, var(--forest-3), var(--forest));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .sobre-visual::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(198,161,91,0.5);
+  }
+  .sobre-visual svg { width: 42%; opacity: 0.9; }
+  .sobre-text p { margin-bottom: 16px; color: var(--text); }
+  .sobre-text .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--forest-2);
+    margin-bottom: 22px;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+  }
+  .facts div {
+    text-align: center;
+    padding: 18px 8px;
+    border-top: 1px solid var(--cream-2);
+  }
+  .facts strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--wine);
+  }
+  .facts span { font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  /* ---------- Cardapio ---------- */
+  #cardapio {
+    background: var(--forest);
+    color: var(--cream);
+  }
+  #cardapio .section-head h2 { color: var(--cream); }
+  #cardapio .section-head p { color: var(--muted-light); }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 44px 0 46px;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid rgba(198,161,91,0.4);
+    color: var(--muted-light);
+    padding: 10px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+  }
+  .tab-btn:hover { border-color: var(--gold-light); color: var(--gold-light); }
+  .tab-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--forest);
+  }
+
+  .panel { display: none; max-width: 780px; margin: 0 auto; }
+  .panel.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0);} }
+
+  .panel-note {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    margin-bottom: 30px;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 13px 4px;
+    border-bottom: 1px dotted rgba(250,246,236,0.18);
+  }
+  .menu-item .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.28rem;
+    color: var(--cream);
+  }
+  .menu-item .filler {
+    flex: 1;
+    border-bottom: 1px dotted rgba(250,246,236,0.28);
+    transform: translateY(-4px);
+  }
+  .menu-item .price {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+
+  .wine-box {
+    margin-top: 54px;
+    padding: 34px 36px;
+    border: 1px solid rgba(198,161,91,0.4);
+    text-align: center;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wine-box h3 { color: var(--gold-light); font-size: 1.4rem; margin-bottom: 10px; }
+  .wine-box p { color: var(--muted-light); max-width: 560px; margin: 0 auto; }
+  .wine-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  .wine-tags span {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(198,161,91,0.35);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: var(--gold-light);
+  }
+
+  /* ---------- Visite ---------- */
+  #visite { background: var(--cream-2); }
+  .visite-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 50px;
+  }
+  .info-card {
+    background: var(--cream);
+    padding: 32px;
+    box-shadow: var(--shadow);
+  }
+  .info-card h3 {
+    font-size: 1.3rem;
+    color: var(--forest-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .info-card h3 svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
+
+  table.hours { width: 100%; border-collapse: collapse; }
+  table.hours td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-2);
+    font-size: 0.95rem;
+  }
+  table.hours td:first-child { color: var(--muted); }
+  table.hours td:last-child { text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+  table.hours tr.today td { color: var(--wine); font-weight: 700; }
+  table.hours tr.closed td:last-child { color: var(--muted); font-style: italic; }
+
+  .contact-list { list-style: none; padding: 0; margin: 0; }
+  .contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cream-2);
+  }
+  .contact-list li:last-child { border-bottom: none; }
+  .contact-list svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .contact-list a:hover { color: var(--wine); }
+  .map-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--wine);
+    border-bottom: 1px solid var(--wine);
+    padding-bottom: 2px;
+  }
+
+  /* ---------- Social ---------- */
+  #social {
+    background: var(--forest);
+    color: var(--cream);
+    text-align: center;
+  }
+  #social .section-head h2 { color: var(--cream); }
+  #social .section-head p { color: var(--muted-light); }
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .social-card {
+    width: 230px;
+    padding: 30px 20px;
+    border: 1px solid rgba(198,161,91,0.35);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .social-card:hover { transform: translateY(-6px); border-color: var(--gold-light); }
+  .social-card svg { width: 30px; height: 30px; margin: 0 auto 14px; color: var(--gold-light); }
+  .social-card strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+  .social-card span { display: block; color: var(--muted-light); font-size: 0.85rem; margin-top: 4px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: #0f2016;
+    color: var(--muted-light);
+    padding: 50px 0 26px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  footer .logo-word {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  footer .foot-links {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin: 18px 0 22px;
+    flex-wrap: wrap;
+  }
+  footer .foot-links a { color: var(--muted-light); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+  footer .foot-links a:hover { color: var(--gold-light); }
+  footer .fine { color: rgba(250,246,236,0.4); font-size: 0.75rem; margin-top: 10px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .sobre-grid, .visite-grid { grid-template-columns: 1fr; }
+    .sobre-visual { max-width: 320px; margin: 0 auto; }
+  }
+
+  @media (max-width: 720px) {
+    nav.links {
+      position: fixed;
+      top: 0; right: 0;
+      height: 100vh;
+      width: 78%;
+      max-width: 320px;
+      background: var(--forest);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 100px 34px;
+      gap: 26px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+      margin-left: 0;
+    }
+    nav.links.open { transform: translateX(0); }
+    .nav-toggle { display: flex; }
+    .facts { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    section { padding: 80px 0; }
+    .lang-switch { order: 2; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container">
+    <a href="#inicio" class="logo">
+      Intermezzo
+      <small data-i18n="logo_sub">Cucina Italiana · Bruxelles</small>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#inicio" data-nav data-i18n="nav_home">Accueil</a>
+      <a href="#sobre" data-nav data-i18n="nav_about">La Maison</a>
+      <a href="#cardapio" data-nav data-i18n="nav_menu">Menu</a>
+      <a href="#visite" data-nav data-i18n="nav_visit">Nous Trouver</a>
+      <a href="#social" data-nav data-i18n="nav_social">Réseaux</a>
+    </nav>
+    <div class="lang-switch" id="langSwitch">
+      <button data-lang="fr">FR</button>
+      <button data-lang="nl">NL</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="monogram">I</div>
+  <div class="hero-content">
+    <div class="eyebrow" data-i18n="hero_eyebrow">Ristorante · Bruxelles</div>
+    <h1>Intermezzo <em>Cucina Italiana</em></h1>
+    <p class="tagline" data-i18n="hero_tagline">Pâtes artisanales, aperitivi et une cantina italienne au cœur de Bruxelles</p>
+
+    <div class="hero-actions">
+      <a href="#cardapio" class="btn btn-solid" data-i18n="cta_menu">Voir le Menu</a>
+      <a href="#" id="reserveBtn" class="btn btn-outline" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 10-3.6 6.7L21 20l-1.3-4A7.96 7.96 0 0020 12z"/><path d="M8.5 10.5c.3 2 2 3.7 4 4"/></svg>
+        <span data-i18n="cta_reserve">Réserver par WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="rating-pill">
+      <span class="stars" id="heroStars"></span>
+      <span data-i18n="rating_text">4.3 sur Google · 380+ avis</span>
+    </div>
+    <br>
+    <span class="status-badge" id="statusBadge">
+      <span class="status-dot"></span>
+      <span id="statusText">…</span>
+    </span>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Benvenuti</div>
+      <h2 data-i18n="about_title">Notre Maison</h2>
+    </div>
+    <div class="ornament">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C9 6 9 10 12 14c3-4 3-8 0-12zM12 14v8M8 22h8"/></svg>
+      <span class="line right"></span>
+    </div>
+
+    <div class="sobre-grid">
+      <div class="sobre-visual">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#e6cd8f" stroke-width="1.5">
+          <circle cx="50" cy="50" r="34"/>
+          <path d="M32 40c8 6 28 6 36 0M30 50h40M32 60c8-6 28-6 36 0" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sobre-text">
+        <p class="lead" data-i18n="about_quote">« Une trattoria ne sert pas seulement à manger — elle sert du temps, de la conversation et des souvenirs. »</p>
+        <p data-i18n="about_p1">Rue des Princes, à deux pas du centre de Bruxelles, l'Intermezzo ouvre ses portes comme une pause italienne au milieu de la journée belge. Pâtes fraîches, sauces mijotées longuement et une carte de vins choisie avec soin composent une cucina simple, faite pour être répétée.</p>
+        <p data-i18n="about_p2">De la linguine artisanale à l'affogato de fin de repas, chaque plat naît de la même idée : peu d'ingrédients, traités avec respect.</p>
+
+        <div class="facts">
+          <div><strong>4.3★</strong><span data-i18n="fact_google">Google Reviews</span></div>
+          <div><strong>380+</strong><span data-i18n="fact_reviews">Avis</span></div>
+          <div><strong>100%</strong><span data-i18n="fact_homemade">Fait Maison</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cardapio">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Il Menu</div>
+      <h2 data-i18n="menu_title">Carte</h2>
+      <p data-i18n="menu_subtitle">Pâtes, antipasti, dolci et la cantina de l'Intermezzo</p>
+    </div>
+
+    <div class="tabs" id="tabsRow"></div>
+    <div id="panelsRow"></div>
+
+    <div class="wine-box">
+      <h3>La Cantina</h3>
+      <p data-i18n="wine_text">Notre carte des vins réunit rouges, rosés et blancs italiens — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, entre autres — avec des options biologiques et biodynamiques. La carte complète, avec les prix au verre et à la bouteille, est disponible à table.</p>
+      <div class="wine-tags">
+        <span>Sangiovese</span><span>Merlot</span><span>Chardonnay</span>
+        <span>Pinot Grigio</span><span>Brunello di Montalcino</span>
+        <span data-i18n="wine_tag_bio">Bio / Biodynamique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visite">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Vi Aspettiamo</div>
+      <h2 data-i18n="visit_title">Nous Trouver</h2>
+    </div>
+
+    <div class="visite-grid">
+      <div class="info-card">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span data-i18n="hours_title">Heures d'Ouverture</span>
+        </h3>
+        <table class="hours" id="hoursTable"></table>
+      </div>
+
+      <div class="info-card">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <span data-i18n="contact_title">Contact &amp; Localisation</span>
+        </h3>
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+            <span data-i18n="contact_address">Rue des Princes 16<br>1000 Bruxelles, Belgique</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h4l2 6-3 2a12 12 0 006 6l2-3 6 2v4a2 2 0 01-2 2C10.5 23 1 13.5 1 4a2 2 0 012-2z"/></svg>
+            <a href="tel:+3222180311">+32 2 218 03 11</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 10-3.6 6.7L21 20l-1.3-4A7.96 7.96 0 0020 12z"/><path d="M8.5 10.5c.3 2 2 3.7 4 4"/></svg>
+            <a href="https://wa.me/32497285956" target="_blank" rel="noopener">+32 497 28 59 56</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.2"/><circle cx="16.2" cy="7.8" r="0.6" fill="currentColor"/></svg>
+            <a href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">@intermezzobxl</a>
+          </li>
+        </ul>
+        <a class="map-link" target="_blank" rel="noopener" data-i18n="map_link"
+           href="https://www.google.com/maps/search/?api=1&query=Rue+des+Princes+16%2C+1000+Bruxelles%2C+Belgique">
+           Voir sur la carte →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="social">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Seguici</div>
+      <h2 data-i18n="social_title">Réseaux Sociaux</h2>
+      <p data-i18n="social_subtitle">Les coulisses de la cuisine, les plats du jour et la vie de la maison</p>
+    </div>
+
+    <div class="social-row">
+      <a class="social-card" href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor"/></svg>
+        <strong>Instagram</strong>
+        <span>@intermezzobxl</span>
+      </a>
+      <a class="social-card" href="https://www.tiktok.com/@intermezzo_brussel" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3v11.5a3.5 3.5 0 11-3-3.46"/><path d="M14 3c.4 2.4 2.1 4 4.6 4.3"/></svg>
+        <strong>TikTok</strong>
+        <span>@intermezzo_brussel</span>
+      </a>
+      <a class="social-card" href="https://www.google.com/maps/search/?api=1&query=Rue+des+Princes+16%2C+1000+Bruxelles%2C+Belgique" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2.6 6.2L21 9l-5 4.4L17.5 20 12 16.7 6.5 20 8 13.4 3 9l6.4-.8z"/></svg>
+        <strong>Google</strong>
+        <span data-i18n="google_card_sub">4.3★ · 380+ avis</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo-word">Intermezzo</div>
+    <div data-i18n="footer_address">Rue des Princes 16, 1000 Bruxelles, Belgique · +32 2 218 03 11</div>
+    <div class="foot-links">
+      <a href="#inicio" data-i18n="nav_home">Accueil</a>
+      <a href="#sobre" data-i18n="nav_about">La Maison</a>
+      <a href="#cardapio" data-i18n="nav_menu">Menu</a>
+      <a href="#visite" data-i18n="nav_visit">Nous Trouver</a>
+      <a href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@intermezzo_brussel" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <div class="fine">© <span id="year"></span> Intermezzo — Cucina Italiana · <span data-i18n="footer_city">Bruxelles</span></div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- i18n ---------------- */
+
+const I18N = {
+  fr: {
+    meta_title: "Intermezzo — Cucina Italiana | Bruxelles",
+    meta_description: "Intermezzo, cucina italiana au cœur de Bruxelles. Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante.",
+    logo_sub: "Cucina Italiana · Bruxelles",
+    nav_home: "Accueil",
+    nav_about: "La Maison",
+    nav_menu: "Menu",
+    nav_visit: "Nous Trouver",
+    nav_social: "Réseaux",
+    hero_eyebrow: "Ristorante · Bruxelles",
+    hero_tagline: "Pâtes artisanales, aperitivi et une cantina italienne au cœur de Bruxelles",
+    cta_menu: "Voir le Menu",
+    cta_reserve: "Réserver par WhatsApp",
+    rating_text: "4.3 sur Google · 380+ avis",
+    status_open: "Ouvert maintenant",
+    status_closed: "Fermé pour le moment",
+    status_suffix: "heure de Bruxelles",
+    about_title: "Notre Maison",
+    about_quote: "« Une trattoria ne sert pas seulement à manger — elle sert du temps, de la conversation et des souvenirs. »",
+    about_p1: "Rue des Princes, à deux pas du centre de Bruxelles, l'Intermezzo ouvre ses portes comme une pause italienne au milieu de la journée belge. Pâtes fraîches, sauces mijotées longuement et une carte de vins choisie avec soin composent une cucina simple, faite pour être répétée.",
+    about_p2: "De la linguine artisanale à l'affogato de fin de repas, chaque plat naît de la même idée : peu d'ingrédients, traités avec respect.",
+    fact_google: "Google Reviews",
+    fact_reviews: "Avis",
+    fact_homemade: "Fait Maison",
+    menu_title: "Carte",
+    menu_subtitle: "Pâtes, antipasti, dolci et la cantina de l'Intermezzo",
+    wine_text: "Notre carte des vins réunit rouges, rosés et blancs italiens — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, entre autres — avec des options biologiques et biodynamiques. La carte complète, avec les prix au verre et à la bouteille, est disponible à table.",
+    wine_tag_bio: "Bio / Biodynamique",
+    visit_title: "Nous Trouver",
+    hours_title: "Heures d'Ouverture",
+    contact_title: "Contact &amp; Localisation",
+    contact_address: "Rue des Princes 16<br>1000 Bruxelles, Belgique",
+    map_link: "Voir sur la carte →",
+    social_title: "Réseaux Sociaux",
+    social_subtitle: "Les coulisses de la cuisine, les plats du jour et la vie de la maison",
+    google_card_sub: "4.3★ · 380+ avis",
+    footer_address: "Rue des Princes 16, 1000 Bruxelles, Belgique · +32 2 218 03 11",
+    footer_city: "Bruxelles",
+    whatsapp_message: "Bonjour, je voudrais réserver une table à l'Intermezzo.",
+    closed_word: "Fermé",
+    days: { monThu: "Lundi à Jeudi", fri: "Vendredi", sat: "Samedi", sun: "Dimanche" },
+    from_word: "à partir de",
+    categories: {
+      sugo:      { label: "Pâtes au Sugo",       note: "Sugo di pomodoro & verdure" },
+      panna:     { label: "Pâtes à la Crème",     note: "Panna & formaggio" },
+      antipasti: { label: "Antipasti",            note: null },
+      freddi:    { label: "Plats Froids",         note: "Portion généreuse, à partager" },
+      dolci:     { label: "Dolci",                note: "Desserts" },
+      aperitivi: { label: "Aperitivi",            note: null },
+      digestivi: { label: "Digestivi",            note: null },
+      bevande:   { label: "Boissons",             note: "Chaudes &amp; froides" },
+    }
+  },
+  nl: {
+    meta_title: "Intermezzo — Cucina Italiana | Brussel",
+    meta_description: "Intermezzo, cucina italiana in het hart van Brussel. Ambachtelijke pasta, antipasti, Italiaanse wijnen en aperitivi in een elegante trattoria.",
+    logo_sub: "Cucina Italiana · Brussel",
+    nav_home: "Home",
+    nav_about: "Het Huis",
+    nav_menu: "Menu",
+    nav_visit: "Bezoek Ons",
+    nav_social: "Sociale Media",
+    hero_eyebrow: "Ristorante · Brussel",
+    hero_tagline: "Ambachtelijke pasta, aperitivi en een Italiaanse wijnkelder in het hart van Brussel",
+    cta_menu: "Bekijk het Menu",
+    cta_reserve: "Reserveren via WhatsApp",
+    rating_text: "4.3 op Google · 380+ beoordelingen",
+    status_open: "Nu open",
+    status_closed: "Nu gesloten",
+    status_suffix: "Brusselse tijd",
+    about_title: "Ons Huis",
+    about_quote: "“Een trattoria serveert niet alleen eten — ze serveert tijd, gesprek en herinnering.”",
+    about_p1: "Aan de Rue des Princes, vlak bij het centrum van Brussel, opent Intermezzo zijn deuren als een Italiaanse pauze midden in de Belgische dag. Verse pasta, langzaam gekookte sauzen en een zorgvuldig samengestelde wijnkaart vormen een eenvoudige cucina, gemaakt om te herhalen.",
+    about_p2: "Van ambachtelijke linguine tot de affogato aan het einde van de maaltijd, elk gerecht ontstaat vanuit hetzelfde idee: weinig ingrediënten, met respect behandeld.",
+    fact_google: "Google Reviews",
+    fact_reviews: "Beoordelingen",
+    fact_homemade: "Huisgemaakt",
+    menu_title: "Menukaart",
+    menu_subtitle: "Pasta, antipasti, dolci en de cantina van Intermezzo",
+    wine_text: "Onze wijnkaart verenigt Italiaanse rode, rosé- en witte wijnen — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, en meer — met biologische en biodynamische opties. De volledige kaart, met prijzen per glas en per fles, is aan tafel beschikbaar.",
+    wine_tag_bio: "Bio / Biodynamisch",
+    visit_title: "Bezoek Ons",
+    hours_title: "Openingsuren",
+    contact_title: "Contact &amp; Locatie",
+    contact_address: "Rue des Princes 16<br>1000 Brussel, België",
+    map_link: "Bekijk op de kaart →",
+    social_title: "Sociale Media",
+    social_subtitle: "Achter de schermen van de keuken, gerechten van de dag en het leven van het huis",
+    google_card_sub: "4.3★ · 380+ beoordelingen",
+    footer_address: "Rue des Princes 16, 1000 Brussel, België · +32 2 218 03 11",
+    footer_city: "Brussel",
+    whatsapp_message: "Hallo, ik wil graag een tafel reserveren bij Intermezzo.",
+    closed_word: "Gesloten",
+    days: { monThu: "Maandag t/m Donderdag", fri: "Vrijdag", sat: "Zaterdag", sun: "Zondag" },
+    from_word: "vanaf",
+    categories: {
+      sugo:      { label: "Pasta's met Tomatensaus", note: "Sugo di pomodoro & verdure" },
+      panna:     { label: "Pasta's met Roomsaus",     note: "Panna & formaggio" },
+      antipasti: { label: "Antipasti",                note: null },
+      freddi:    { label: "Koude Gerechten",           note: "Groter gerecht, om te delen" },
+      dolci:     { label: "Dolci",                     note: "Nagerechten" },
+      aperitivi: { label: "Aperitivi",                 note: null },
+      digestivi: { label: "Digestivi",                 note: null },
+      bevande:   { label: "Dranken",                   note: "Warm &amp; koud" },
+    }
+  },
+  en: {
+    meta_title: "Intermezzo — Cucina Italiana | Brussels",
+    meta_description: "Intermezzo, cucina italiana in the heart of Brussels. Handmade pasta, antipasti, Italian wines and aperitivi in an elegant trattoria.",
+    logo_sub: "Cucina Italiana · Brussels",
+    nav_home: "Home",
+    nav_about: "About",
+    nav_menu: "Menu",
+    nav_visit: "Visit Us",
+    nav_social: "Social",
+    hero_eyebrow: "Ristorante · Brussels",
+    hero_tagline: "Handmade pasta, aperitivi and an Italian wine cellar in the heart of Brussels",
+    cta_menu: "View Menu",
+    cta_reserve: "Reserve via WhatsApp",
+    rating_text: "4.3 on Google · 380+ reviews",
+    status_open: "Open now",
+    status_closed: "Closed right now",
+    status_suffix: "Brussels time",
+    about_title: "Our House",
+    about_quote: "“A trattoria doesn't just serve food — it serves time, conversation and memory.”",
+    about_p1: "On Rue des Princes, just steps from central Brussels, Intermezzo opens its doors as an Italian pause in the middle of the Belgian day. Fresh pasta, slow-simmered sauces and a carefully chosen wine list make up a simple cucina, made to be repeated.",
+    about_p2: "From handmade linguine to the affogato at the end of the meal, every dish is born from the same idea: few ingredients, treated with respect.",
+    fact_google: "Google Reviews",
+    fact_reviews: "Reviews",
+    fact_homemade: "Homemade",
+    menu_title: "Menu",
+    menu_subtitle: "Pasta, antipasti, dolci and Intermezzo's cantina",
+    wine_text: "Our wine list brings together Italian reds, rosés and whites — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, among others — with organic and biodynamic options. The full list, with prices by the glass and bottle, is available at the table.",
+    wine_tag_bio: "Organic / Biodynamic",
+    visit_title: "Visit Us",
+    hours_title: "Opening Hours",
+    contact_title: "Contact &amp; Location",
+    contact_address: "Rue des Princes 16<br>1000 Brussels, Belgium",
+    map_link: "View on map →",
+    social_title: "Social Media",
+    social_subtitle: "Behind the scenes in the kitchen, daily specials and the life of the house",
+    google_card_sub: "4.3★ · 380+ reviews",
+    footer_address: "Rue des Princes 16, 1000 Brussels, Belgium · +32 2 218 03 11",
+    footer_city: "Brussels",
+    whatsapp_message: "Hello, I would like to reserve a table at Intermezzo.",
+    closed_word: "Closed",
+    days: { monThu: "Monday to Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" },
+    from_word: "from",
+    categories: {
+      sugo:      { label: "Pasta with Tomato Sauce", note: "Sugo di pomodoro & verdure" },
+      panna:     { label: "Pasta with Cream Sauce",   note: "Panna & formaggio" },
+      antipasti: { label: "Antipasti",                note: null },
+      freddi:    { label: "Cold Dishes",              note: "Larger portion, to share" },
+      dolci:     { label: "Dolci",                    note: "Desserts" },
+      aperitivi: { label: "Aperitivi",                note: null },
+      digestivi: { label: "Digestivi",                note: null },
+      bevande:   { label: "Beverages",                note: "Hot &amp; Cold" },
+    }
+  }
+};
+
+const WHATSAPP_NUMBER = "32497285956";
+
+/* items are language-independent (Italian/French dish names); price is a
+   plain "12,50" string, or ["from", "4,00"] for the bruschette entry */
+const MENU_ITEMS = {
+  sugo: [
+    ["Linguine alle Zucchine", "17,50"],
+    ["Linguine al Vino", "20,00"],
+    ["Linguine alla Crudaiola", "17,00"],
+    ["Penne all'Arrabbiata", "15,50"],
+    ["Spaghetti alla Puttanesca", "17,00"],
+    ["Spaghetti Vongole", "18,50"],
+    ["Spaghetti Salsiccia au Fenouil", "19,00"],
+    ["Spaghetti al Tartufo", "19,50"],
+    ["Bucatini all'Amatriciana", "17,50"],
+    ["Pasta Integrale alla Siciliana", "17,50"],
+    ["Tagliatelle Melanzane", "17,50"],
+    ["Linguine alla Carrettiera", "16,50"],
+    ["Linguine al Nero di Seppia", "19,00"],
+  ],
+  panna: [
+    ["Tortelloni al Formaggio", "17,50"],
+    ["Rigatoni al Dragoncello", "16,00"],
+    ["Fusilli alla Forestiera", "17,00"],
+    ["Penne Salsa Verde", "16,50"],
+    ["Penne du Chef", "16,00"],
+    ["Farfalle Fantasia", "16,00"],
+    ["Penne alla Vegetale", "16,00"],
+  ],
+  antipasti: [
+    ["Bruschette", ["from", "4,00"]],
+    ["Assiette de crudités", "7,50"],
+    ["Assiette de tomates", "8,00"],
+    ["Mozzarella crudités", "9,00"],
+    ["Caprese", "9,00"],
+    ["Jambon de Parme", "10,00"],
+    ["Charcuterie italienne", "10,50"],
+    ["Bresaola", "11,00"],
+  ],
+  freddi: [
+    ["Assiette de crudités", "9,00"],
+    ["Mozzarella crudités", "15,00"],
+    ["Caprese", "15,00"],
+    ["Assiette trois fromages", "16,00"],
+    ["Toast Intermezzo", "16,00"],
+    ["Toast végétarien", "16,00"],
+    ["Jambon de Parme", "18,00"],
+    ["Charcuterie italienne", "19,00"],
+    ["Bresaola", "20,00"],
+  ],
+  dolci: [
+    ["Fromage", "8,00"],
+    ["Fromage mixte", "10,00"],
+    ["Gâteau", "8,00"],
+    ["Panna cotta", "7,00"],
+    ["Tiramisu (œufs bio)", "7,50"],
+    ["Tartufo (nero/bianco)", "9,50"],
+    ["Affogato", "10,00"],
+  ],
+  aperitivi: [
+    ["Bitter sans alcool", "6,00"],
+    ["Martini bianco/rosso", "6,50"],
+    ["Cynar", "7,00"],
+    ["Aperol", "6,50"],
+    ["Campari", "7,00"],
+    ["Milano-Torino", "10,00"],
+    ["Campari soda/orange", "9,00"],
+    ["Spritz", "9,50"],
+    ["Negroni", "10,00"],
+  ],
+  digestivi: [
+    ["Limoncello", "6,50"],
+    ["Amaretto", "7,00"],
+    ["Amaro Averna", "7,00"],
+    ["Sambuca", "7,50"],
+    ["Fernet Branca", "7,50"],
+    ["Fernet Branca menta", "8,00"],
+    ["Grappa", "8,00"],
+    ["Vecchia Romagna", "8,50"],
+  ],
+  bevande: [
+    ["Espresso / ristretto / lungo", "3,00"],
+    ["Cappuccino", "3,50"],
+    ["Café corretto", "5,00"],
+    ["Bière blonde", "3,30"],
+    ["Bière blanche", "4,00"],
+    ["Eau italienne 50cl", "4,90"],
+    ["Jus de fruit frais", "6,00"],
+  ],
+};
+
+const CATEGORY_ORDER = ["sugo", "panna", "antipasti", "freddi", "dolci", "aperitivi", "digestivi", "bevande"];
+
+const HOURS_ROWS = [
+  { key: "monThu", ranges: ["11:30 – 15:00"], days: [1,2,3,4] },
+  { key: "fri",    ranges: ["11:30 – 15:00", "19:00 – 22:00"], days: [5] },
+  { key: "sat",    ranges: ["12:00 – 15:00", "19:00 – 22:00"], days: [6] },
+  { key: "sun",    ranges: [], days: [0] },
+];
+
+// minute-based schedule used for the live open/closed check
+const SCHEDULE = {
+  0: [],
+  1: [[690, 900]],
+  2: [[690, 900]],
+  3: [[690, 900]],
+  4: [[690, 900]],
+  5: [[690, 900], [1140, 1320]],
+  6: [[720, 900], [1140, 1320]],
+};
+
+let currentLang = localStorage.getItem("intermezzo_lang") || "fr";
+let activeTab = CATEGORY_ORDER[0];
+
+/* ---------------- Apply translations ---------------- */
+
+function setHTML(el, value) {
+  if (/[<&]/.test(value)) el.innerHTML = value;
+  else el.textContent = value;
+}
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("intermezzo_lang", lang);
+  const t = I18N[lang];
+
+  document.documentElement.lang = lang;
+  document.title = t.meta_title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute("content", t.meta_description);
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key] !== undefined) setHTML(el, t[key]);
+  });
+
+  document.querySelectorAll("#langSwitch button").forEach(b => {
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+
+  const reserveBtn = document.getElementById("reserveBtn");
+  reserveBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.whatsapp_message)}`;
+
+  renderMenu(lang);
+  renderHours(lang);
+  updateStatus();
+}
+
+/* ---------------- Render: menu tabs ---------------- */
+
+function formatPrice(price, t) {
+  if (Array.isArray(price)) return `${t.from_word} ${price[1]} €`;
+  return `${price} €`;
+}
+
+function renderMenu(lang) {
+  const t = I18N[lang];
+  const tabsRow = document.getElementById("tabsRow");
+  const panelsRow = document.getElementById("panelsRow");
+  tabsRow.innerHTML = "";
+  panelsRow.innerHTML = "";
+
+  CATEGORY_ORDER.forEach(id => {
+    const cat = t.categories[id];
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (id === activeTab ? " active" : "");
+    btn.textContent = cat.label;
+    btn.dataset.target = id;
+    btn.addEventListener("click", () => { activeTab = id; selectTab(id); });
+    tabsRow.appendChild(btn);
+
+    const panel = document.createElement("div");
+    panel.className = "panel" + (id === activeTab ? " active" : "");
+    panel.id = "panel-" + id;
+
+    if (cat.note) {
+      const note = document.createElement("p");
+      note.className = "panel-note";
+      note.textContent = cat.note;
+      panel.appendChild(note);
+    }
+
+    MENU_ITEMS[id].forEach(([name, price]) => {
+      const row = document.createElement("div");
+      row.className = "menu-item";
+      row.innerHTML = `
+        <span class="name">${name}</span>
+        <span class="filler"></span>
+        <span class="price">${formatPrice(price, t)}</span>
+      `;
+      panel.appendChild(row);
+    });
+
+    panelsRow.appendChild(panel);
+  });
+}
+
+function selectTab(id) {
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.target === id));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + id));
+}
+
+/* ---------------- Render: hours table ---------------- */
+
+function renderHours(lang) {
+  const t = I18N[lang];
+  const hoursTable = document.getElementById("hoursTable");
+  hoursTable.innerHTML = "";
+  const todayIdx = getBrusselsParts().weekday;
+
+  HOURS_ROWS.forEach(row => {
+    const tr = document.createElement("tr");
+    const isToday = row.days.includes(todayIdx);
+    const isClosed = row.ranges.length === 0;
+    tr.className = (isToday ? "today " : "") + (isClosed ? "closed" : "");
+    tr.innerHTML = `<td>${t.days[row.key]}</td><td>${isClosed ? t.closed_word : row.ranges.join(" · ")}</td>`;
+    hoursTable.appendChild(tr);
+  });
+}
+
+/* ---------------- Live open/closed status ---------------- */
+
+function getBrusselsParts(date = new Date()) {
+  const fmt = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Brussels",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  const parts = fmt.formatToParts(date);
+  const map = {};
+  parts.forEach(p => map[p.type] = p.value);
+  const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const weekday = weekdays.indexOf(map.weekday);
+  const minutes = parseInt(map.hour, 10) * 60 + parseInt(map.minute, 10);
+  return { weekday, minutes };
+}
+
+function updateStatus() {
+  const t = I18N[currentLang];
+  const { weekday, minutes } = getBrusselsParts();
+  const ranges = SCHEDULE[weekday] || [];
+  const isOpen = ranges.some(([start, end]) => minutes >= start && minutes < end);
+
+  const badge = document.getElementById("statusBadge");
+  const text = document.getElementById("statusText");
+  badge.classList.toggle("closed", !isOpen);
+  text.textContent = `${isOpen ? t.status_open : t.status_closed} · ${t.status_suffix}`;
+}
+setInterval(updateStatus, 60000);
+
+/* ---------------- Hero stars ---------------- */
+
+const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7-6.2-3.7L6 21l1.6-7L2.2 9.3l7.1-.7z"/></svg>';
+document.getElementById("heroStars").innerHTML = STAR_SVG.repeat(4) +
+  '<svg viewBox="0 0 24 24" style="opacity:.35"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7-6.2-3.7L6 21l1.6-7L2.2 9.3l7.1-.7z"/></svg>';
+
+/* ---------------- Language switch ---------------- */
+
+document.querySelectorAll("#langSwitch button").forEach(btn => {
+  btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+});
+
+/* ---------------- Nav behaviour ---------------- */
+
+const header = document.getElementById("siteHeader");
+window.addEventListener("scroll", () => {
+  header.classList.toggle("scrolled", window.scrollY > 40);
+});
+
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+document.querySelectorAll("[data-nav]").forEach(link => {
+  link.addEventListener("click", () => navLinks.classList.remove("open"));
+});
+
+const sections = document.querySelectorAll("section[id]");
+const navByHref = {};
+document.querySelectorAll("[data-nav]").forEach(a => navByHref[a.getAttribute("href")] = a);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      Object.values(navByHref).forEach(a => a.classList.remove("active"));
+      const link = navByHref["#" + entry.target.id];
+      if (link) link.classList.add("active");
+    }
+  });
+}, { rootMargin: "-40% 0px -55% 0px" });
+sections.forEach(s => observer.observe(s));
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------------- Init ---------------- */
+
+applyLanguage(currentLang);
+</script>
+
+</body>
+</html>
