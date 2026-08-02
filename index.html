@@ -331,9 +331,7 @@
     border-radius: 4px;
     background: linear-gradient(155deg, var(--forest-3), var(--forest));
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
     box-shadow: var(--shadow);
   }
   .sobre-visual::before {
@@ -341,8 +339,27 @@
     position: absolute;
     inset: 14px;
     border: 1px solid rgba(198,161,91,0.5);
+    z-index: 2;
+    pointer-events: none;
   }
-  .sobre-visual svg { width: 42%; opacity: 0.9; }
+  .sobre-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: contrast(1.08) saturate(1.15) brightness(1.02);
+  }
+  .sobre-photo-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at center, transparent 40%, rgba(10,18,12,0.5) 100%),
+      linear-gradient(rgba(198,161,91,0.15), rgba(198,161,91,0.15));
+  }
   .sobre-text p { margin-bottom: 16px; color: var(--text); }
   .sobre-text .lead {
     font-family: 'Cormorant Garamond', serif;
@@ -577,6 +594,29 @@
   footer .foot-links a:hover { color: var(--gold-light); }
   footer .fine { color: rgba(250,246,236,0.4); font-size: 0.75rem; margin-top: 10px; }
 
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  .visite-grid .info-card:nth-child(2) { transition-delay: 0.12s; }
+  .social-row .social-card:nth-child(2) { transition-delay: 0.12s; }
+  .social-row .social-card:nth-child(3) { transition-delay: 0.24s; }
+  /* higher specificity so the reveal rule doesn't clobber .social-card's own hover transition */
+  .social-card.reveal { transition: opacity 0.7s ease, transform 0.25s ease, border-color 0.25s ease; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 860px) {
     .sobre-grid, .visite-grid { grid-template-columns: 1fr; }
@@ -663,7 +703,7 @@
 
 <section id="sobre">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">Benvenuti</div>
       <h2 data-i18n="about_title">Notre Maison</h2>
     </div>
@@ -674,13 +714,11 @@
     </div>
 
     <div class="sobre-grid">
-      <div class="sobre-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#e6cd8f" stroke-width="1.5">
-          <circle cx="50" cy="50" r="34"/>
-          <path d="M32 40c8 6 28 6 36 0M30 50h40M32 60c8-6 28-6 36 0" stroke-linecap="round"/>
-        </svg>
+      <div class="sobre-visual reveal">
+        <img class="sobre-photo" src="fachada.jpg" alt="Façade de la Trattoria Intermezzo à Bruxelles">
+        <div class="sobre-photo-overlay"></div>
       </div>
-      <div class="sobre-text">
+      <div class="sobre-text reveal reveal-delay-1">
         <p class="lead" data-i18n="about_quote">« Une trattoria ne sert pas seulement à manger — elle sert du temps, de la conversation et des souvenirs. »</p>
         <p data-i18n="about_p1">Rue des Princes, à deux pas du centre de Bruxelles, l'Intermezzo ouvre ses portes comme une pause italienne au milieu de la journée belge. Pâtes fraîches, sauces mijotées longuement et une carte de vins choisie avec soin composent une cucina simple, faite pour être répétée.</p>
         <p data-i18n="about_p2">De la linguine artisanale à l'affogato de fin de repas, chaque plat naît de la même idée : peu d'ingrédients, traités avec respect.</p>
@@ -697,16 +735,16 @@
 
 <section id="cardapio">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">Il Menu</div>
       <h2 data-i18n="menu_title">Carte</h2>
       <p data-i18n="menu_subtitle">Pâtes, antipasti, dolci et la cantina de l'Intermezzo</p>
     </div>
 
-    <div class="tabs" id="tabsRow"></div>
-    <div id="panelsRow"></div>
+    <div class="tabs reveal" id="tabsRow"></div>
+    <div class="reveal reveal-delay-1" id="panelsRow"></div>
 
-    <div class="wine-box">
+    <div class="wine-box reveal reveal-delay-2">
       <h3>La Cantina</h3>
       <p data-i18n="wine_text">Notre carte des vins réunit rouges, rosés et blancs italiens — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, entre autres — avec des options biologiques et biodynamiques. La carte complète, avec les prix au verre et à la bouteille, est disponible à table.</p>
       <div class="wine-tags">
@@ -720,13 +758,13 @@
 
 <section id="visite">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">Vi Aspettiamo</div>
       <h2 data-i18n="visit_title">Nous Trouver</h2>
     </div>
 
     <div class="visite-grid">
-      <div class="info-card">
+      <div class="info-card reveal">
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span data-i18n="hours_title">Heures d'Ouverture</span>
@@ -734,7 +772,7 @@
         <table class="hours" id="hoursTable"></table>
       </div>
 
-      <div class="info-card">
+      <div class="info-card reveal">
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
           <span data-i18n="contact_title">Contact &amp; Localisation</span>
@@ -768,24 +806,24 @@
 
 <section id="social">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">Seguici</div>
       <h2 data-i18n="social_title">Réseaux Sociaux</h2>
       <p data-i18n="social_subtitle">Les coulisses de la cuisine, les plats du jour et la vie de la maison</p>
     </div>
 
     <div class="social-row">
-      <a class="social-card" href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">
+      <a class="social-card reveal" href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor"/></svg>
         <strong>Instagram</strong>
         <span>@intermezzobxl</span>
       </a>
-      <a class="social-card" href="https://www.tiktok.com/@intermezzo_brussel" target="_blank" rel="noopener">
+      <a class="social-card reveal" href="https://www.tiktok.com/@intermezzo_brussel" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3v11.5a3.5 3.5 0 11-3-3.46"/><path d="M14 3c.4 2.4 2.1 4 4.6 4.3"/></svg>
         <strong>TikTok</strong>
         <span>@intermezzo_brussel</span>
       </a>
-      <a class="social-card" href="https://www.google.com/maps/search/?api=1&query=Rue+des+Princes+16%2C+1000+Bruxelles%2C+Belgique" target="_blank" rel="noopener">
+      <a class="social-card reveal" href="https://www.google.com/maps/search/?api=1&query=Rue+des+Princes+16%2C+1000+Bruxelles%2C+Belgique" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2.6 6.2L21 9l-5 4.4L17.5 20 12 16.7 6.5 20 8 13.4 3 9l6.4-.8z"/></svg>
         <strong>Google</strong>
         <span data-i18n="google_card_sub">4.3★ · 380+ avis</span>
@@ -1267,6 +1305,23 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: "-40% 0px -55% 0px" });
 sections.forEach(s => observer.observe(s));
+
+/* ---------------- Scroll reveal ---------------- */
+
+const revealEls = document.querySelectorAll(".reveal");
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  revealEls.forEach(el => el.classList.add("is-visible"));
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+  revealEls.forEach(el => revealObserver.observe(el));
+}
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
