@@ -895,8 +895,7 @@ const I18N = {
     days: { monThu: "Lundi à Jeudi", fri: "Vendredi", sat: "Samedi", sun: "Dimanche" },
     from_word: "à partir de",
     categories: {
-      sugo:      { label: "Pâtes au Sugo",       note: "Sugo di pomodoro & verdure" },
-      panna:     { label: "Pâtes à la Crème",     note: "Panna & formaggio" },
+      pasta:     { label: "Pâtes",                note: "Sugo, panna & formaggio" },
       antipasti: { label: "Antipasti",            note: null },
       freddi:    { label: "Plats Froids",         note: "Portion généreuse, à partager" },
       dolci:     { label: "Dolci",                note: "Desserts" },
@@ -948,8 +947,7 @@ const I18N = {
     days: { monThu: "Maandag t/m Donderdag", fri: "Vrijdag", sat: "Zaterdag", sun: "Zondag" },
     from_word: "vanaf",
     categories: {
-      sugo:      { label: "Pasta's met Tomatensaus", note: "Sugo di pomodoro & verdure" },
-      panna:     { label: "Pasta's met Roomsaus",     note: "Panna & formaggio" },
+      pasta:     { label: "Pasta's",                  note: "Sugo, panna & formaggio" },
       antipasti: { label: "Antipasti",                note: null },
       freddi:    { label: "Koude Gerechten",           note: "Groter gerecht, om te delen" },
       dolci:     { label: "Dolci",                     note: "Nagerechten" },
@@ -1001,8 +999,7 @@ const I18N = {
     days: { monThu: "Monday to Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" },
     from_word: "from",
     categories: {
-      sugo:      { label: "Pasta with Tomato Sauce", note: "Sugo di pomodoro & verdure" },
-      panna:     { label: "Pasta with Cream Sauce",   note: "Panna & formaggio" },
+      pasta:     { label: "Pasta",                    note: "Sugo, panna & formaggio" },
       antipasti: { label: "Antipasti",                note: null },
       freddi:    { label: "Cold Dishes",              note: "Larger portion, to share" },
       dolci:     { label: "Dolci",                    note: "Desserts" },
@@ -1018,29 +1015,27 @@ const WHATSAPP_NUMBER = "32497285956";
 /* items are language-independent (Italian/French dish names); price is a
    plain "12,50" string, or ["from", "4,00"] for the bruschette entry */
 const MENU_ITEMS = {
-  sugo: [
-    ["Linguine alle Zucchine", "17,50"],
+  pasta: [
     ["Linguine al Vino", "20,00"],
     ["Linguine alla Crudaiola", "17,00"],
     ["Penne all'Arrabbiata", "15,50"],
     ["Spaghetti alla Puttanesca", "17,00"],
     ["Spaghetti Vongole", "18,50"],
+    ["Linguine alle Zucchine", "17,50"],
     ["Spaghetti Salsiccia au Fenouil", "19,00"],
-    ["Bucatini all'Amatriciana", "17,50"],
-    ["Pasta Integrale alla Siciliana", "17,50"],
-    ["Tagliatelle Melanzane", "17,50"],
-    ["Linguine alla Carrettiera", "16,50"],
-    ["Linguine al Nero di Seppia", "19,00"],
-    ["Penne alla Vegetale", "16,00"],
-    ["Tagliatelle al Ragù d'Agnello", "19,50"],
-  ],
-  panna: [
     ["Tortelloni al Formaggio", "17,50"],
     ["Rigatoni al Dragoncello", "16,00"],
     ["Fusilli alla Forestiera", "17,00"],
     ["Penne Salsa Verde", "16,50"],
     ["Penne du Chef", "16,00"],
     ["Farfalle Fantasia", "16,00"],
+    ["Penne alla Vegetale", "16,00"],
+    ["Bucatini all'Amatriciana", "17,50"],
+    ["Pasta Integrale alla Siciliana", "17,50"],
+    ["Tagliatelle Melanzane", "17,50"],
+    ["Linguine alla Carrettiera", "16,50"],
+    ["Linguine al Nero di Seppia", "19,00"],
+    ["Tagliatelle al Ragù d'Agnello", "19,50"],
   ],
   antipasti: [
     ["Bruschette", ["from", "4,00"]],
@@ -1104,7 +1099,7 @@ const MENU_ITEMS = {
   ],
 };
 
-const CATEGORY_ORDER = ["sugo", "panna", "antipasti", "freddi", "dolci", "aperitivi", "digestivi", "bevande"];
+const CATEGORY_ORDER = ["pasta", "antipasti", "freddi", "dolci", "aperitivi", "digestivi", "bevande"];
 
 const HOURS_ROWS = [
   { key: "monThu", ranges: ["11:30 – 15:00"], days: [1,2,3,4] },
