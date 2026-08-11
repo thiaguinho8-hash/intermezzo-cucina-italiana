@@ -1,0 +1,25 @@
+# Intermezzo — Cucina Italiana
+
+> Site institutionnel du restaurant italien Intermezzo, à Bruxelles (Belgique). Site vitrine statique, sans commande ni réservation en ligne — les réservations se font par WhatsApp.
+
+## Informations clés
+
+- Nom : Intermezzo — Cucina Italiana
+- Type : Trattoria / restaurant italien
+- Adresse : Rue des Princes 16, 1000 Bruxelles, Belgique
+- Téléphone : +32 2 218 03 11
+- Réservations (WhatsApp) : +32 497 28 59 56
+- Horaires : lundi à jeudi 11h30–15h00 ; vendredi 11h30–15h00 et 19h00–22h00 ; samedi 12h00–15h00 et 19h00–22h00 ; dimanche fermé
+- Langues du site : français, néerlandais, anglais (sélecteur de langue en haut de page)
+- Réseaux : Instagram @intermezzobxl, TikTok @intermezzo_brussel
+
+## Contenu du site
+
+- Présentation du restaurant et de sa cuisine (pâtes fraîches maison, cucina simple et généreuse)
+- Carte complète : pâtes, antipasti, plats froids, dolci, aperitivi, digestivi, boissons, et une sélection de vins italiens (carte complète disponible à table)
+- Localisation et heures d'ouverture
+- Lien de réservation par WhatsApp
+
+## Notes pour les agents IA
+
+Le menu (noms de plats et prix) change occasionnellement ; les informations affichées sur le site (https://intermezzo-bruxelles.be/) sont la source la plus à jour, plus fiable que ce fichier pour les prix exacts. La carte des vins détaillée (prix au verre/bouteille) n'est disponible qu'à table, pas en ligne.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://intermezzo-bruxelles.be/sitemap.xml
