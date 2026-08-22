@@ -315,12 +315,18 @@
     transition: all 0.25s ease;
     font-family: 'Lato', sans-serif;
   }
-  .btn svg { width: 16px; height: 16px; }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn svg.arrow { transition: transform 0.25s ease; }
+  .btn:hover svg.arrow { transform: translateX(3px); }
   .btn-solid {
     background: var(--gold);
     color: var(--forest);
+    box-shadow: 0 0 0 1px rgba(198,161,91,0.5), 0 8px 24px rgba(198,161,91,0.28);
   }
-  .btn-solid:hover { background: var(--gold-light); }
+  .btn-solid:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 0 1px rgba(230,205,143,0.6), 0 10px 30px rgba(198,161,91,0.4);
+  }
   .btn-outline {
     background: transparent;
     color: var(--gold-light);
@@ -561,6 +567,7 @@
     margin-top: 6px;
   }
   .ornament.small { margin: 16px 0 0; color: var(--gold); }
+  .hero-content .ornament.small { margin: 14px 0 28px; }
   .ornament.small .dot {
     width: 6px; height: 6px; flex-shrink: 0;
     background: var(--gold);
@@ -882,11 +889,18 @@
     <h1>Intermezzo <em>Cucina Italiana</em></h1>
     <p class="tagline" data-i18n="hero_tagline">Pâtes artisanales, aperitivi et une cantina italienne au cœur de Bruxelles</p>
 
+    <div class="ornament small"><span class="line"></span><span class="dot"></span><span class="line right"></span></div>
+
     <div class="hero-actions">
-      <a href="#cardapio" class="btn btn-solid" data-i18n="cta_menu">Voir le Menu</a>
+      <a href="#cardapio" class="btn btn-solid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 014 18.5v-13z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 001.5-1.5v-13z"/></svg>
+        <span data-i18n="cta_menu">Voir le Menu</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
       <a href="#" id="reserveBtn" class="btn btn-outline" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 10-3.6 6.7L21 20l-1.3-4A7.96 7.96 0 0020 12z"/><path d="M8.5 10.5c.3 2 2 3.7 4 4"/></svg>
         <span data-i18n="cta_reserve">Réserver par WhatsApp</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
 
@@ -899,6 +913,8 @@
       <span class="status-dot"></span>
       <span id="statusText">…</span>
     </span>
+
+    <div class="ornament small"><span class="line"></span><span class="dot"></span><span class="line right"></span></div>
   </div>
 </section>
 
