@@ -544,31 +544,56 @@
   .panel.active { display: block; animation: fadeIn 0.45s cubic-bezier(0.22,1,0.36,1); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0);} }
 
+  .panel-head { text-align: center; margin-bottom: 34px; }
+  .panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
   .panel-note {
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.2rem;
     color: var(--gold-light);
-    margin-bottom: 30px;
+    margin-top: 6px;
+  }
+  .ornament.small { margin: 16px 0 0; color: var(--gold); }
+  .ornament.small .dot {
+    width: 6px; height: 6px; flex-shrink: 0;
+    background: var(--gold);
+    transform: rotate(45deg);
   }
 
   .menu-item {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     gap: 10px;
     padding: 13px 4px;
     border-bottom: 1px dotted rgba(250,246,236,0.18);
   }
+  .menu-item .mi-text { display: flex; flex-direction: column; gap: 3px; }
   .menu-item .name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.28rem;
     color: var(--cream);
+    line-height: 1.15;
+  }
+  .menu-item .desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.2px;
+    color: var(--muted-light);
+    opacity: 0.85;
   }
   .menu-item .filler {
     flex: 1;
+    align-self: center;
     border-bottom: 1px dotted rgba(250,246,236,0.28);
     transform: translateY(-4px);
+    min-width: 16px;
   }
   .menu-item .price {
     font-family: 'Playfair Display', serif;
@@ -1188,26 +1213,26 @@ const WHATSAPP_NUMBER = "32497285956";
    plain "12,50" string, or ["from", "4,00"] for the bruschette entry */
 const MENU_ITEMS = {
   pasta: [
-    ["Lasagnette all'Emiliana", "19,50"],
-    ["Penne alla Romagnola", "18,50"],
-    ["Linguine alla Crudaiola", "17,00"],
-    ["Spaghetti alla Puttanesca", "17,00"],
-    ["Spaghetti Vongole", "18,50"],
-    ["Tagliatelle Scampi", "20,00"],
-    ["Penne all'Arrabbiata", "15,50"],
-    ["Spaghetti al Tartufo", "19,50"],
-    ["Rigatoni al Dragoncello", "16,00"],
-    ["Fusilli alla Forestiera", "17,00"],
-    ["Penne Salsa Verde", "16,50"],
-    ["Penne du Chef", "16,00"],
-    ["Farfalle Fantasia", "16,00"],
-    ["Penne alla Vegetale", "16,00"],
-    ["Bucatini all'Amatriciana", "17,50"],
-    ["Pasta Integrale alla Siciliana", "17,50"],
-    ["Tagliatelle Melanzane", "17,50"],
-    ["Linguine alla Carrettiera", "16,50"],
-    ["Linguine al Nero di Seppia", "19,00"],
-    ["Tortelloni al Formaggio", "17,50"],
+    ["Lasagnette all'Emiliana", "19,50", "huile d'olive, bœuf, carottes, céleri"],
+    ["Penne alla Romagnola", "18,50", "tomate, viande hachée, ricotta"],
+    ["Linguine alla Crudaiola", "17,00", "huile d'olive, petits dés de tomates fraîches, rucola, ail"],
+    ["Spaghetti alla Puttanesca", "17,00", "tomate, olives, câpres, anchois"],
+    ["Spaghetti Vongole", "18,50", "tomate, praires"],
+    ["Tagliatelle Scampi", "20,00", "huile d'olive, petits dés de tomates fraîches, scampi, ail"],
+    ["Penne all'Arrabbiata", "15,50", "tomate, piment"],
+    ["Spaghetti al Tartufo", "19,50", "tomate, saucisses aux truffes artisanale"],
+    ["Rigatoni al Dragoncello", "16,00", "crème tomatée, champignons, estragon"],
+    ["Fusilli alla Forestiera", "17,00", "crème, tomate, champignons, lardons"],
+    ["Penne Salsa Verde", "16,50", "crème, gorgonzola, épinards"],
+    ["Penne du Chef", "16,00", "crème, piment"],
+    ["Farfalle Fantasia", "16,00", "crème tomatée, ail, œufs de lompe"],
+    ["Penne alla Vegetale", "16,00", "tomate, carottes, courgettes, petits pois, haricots verts"],
+    ["Bucatini all'Amatriciana", "17,50", "tomate, oignons, joues de porc (guanciale)"],
+    ["Pasta Integrale alla Siciliana", "17,50", "tomate, poivrons, aubergines, olives, câpres"],
+    ["Tagliatelle Melanzane", "17,50", "tomate, aubergines"],
+    ["Linguine alla Carrettiera", "16,50", "tomate, oignons, piment"],
+    ["Linguine al Nero di Seppia", "19,00", "tomate, encre de sèche"],
+    ["Tortelloni al Formaggio", "17,50", "crème, au 4 fromages"],
   ],
   antipasti: [
     ["Bruschette", ["from", "4,00"]],
@@ -1365,18 +1390,23 @@ function renderMenu(lang) {
     panel.className = "panel" + (id === activeTab ? " active" : "");
     panel.id = "panel-" + id;
 
-    if (cat.note) {
-      const note = document.createElement("p");
-      note.className = "panel-note";
-      note.textContent = cat.note;
-      panel.appendChild(note);
-    }
+    const head = document.createElement("div");
+    head.className = "panel-head";
+    head.innerHTML = `
+      <h3 class="panel-title">${cat.label}</h3>
+      ${cat.note ? `<p class="panel-note">${cat.note}</p>` : ""}
+      <div class="ornament small"><span class="line"></span><span class="dot"></span><span class="line right"></span></div>
+    `;
+    panel.appendChild(head);
 
-    MENU_ITEMS[id].forEach(([name, price]) => {
+    MENU_ITEMS[id].forEach(([name, price, desc]) => {
       const row = document.createElement("div");
       row.className = "menu-item";
       row.innerHTML = `
-        <span class="name">${name}</span>
+        <span class="mi-text">
+          <span class="name">${name}</span>
+          ${desc ? `<span class="desc">${desc}</span>` : ""}
+        </span>
         <span class="filler"></span>
         <span class="price">${formatPrice(price, t)}</span>
       `;
