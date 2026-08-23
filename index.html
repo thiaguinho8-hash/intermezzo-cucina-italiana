@@ -244,6 +244,20 @@
     display: block;
   }
 
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 90;
+  }
+  .nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
@@ -881,6 +895,7 @@
     </button>
   </div>
 </header>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <section class="hero" id="inicio">
   <div class="monogram">I</div>
@@ -1513,15 +1528,19 @@ window.addEventListener("scroll", () => {
 
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
-navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+const navBackdrop = document.getElementById("navBackdrop");
+function closeNav() {
+  navLinks.classList.remove("open");
+  navBackdrop.classList.remove("open");
+}
+navToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  navBackdrop.classList.toggle("open");
+});
 document.querySelectorAll("[data-nav]").forEach(link => {
-  link.addEventListener("click", () => navLinks.classList.remove("open"));
+  link.addEventListener("click", closeNav);
 });
-document.addEventListener("click", (e) => {
-  if (navLinks.classList.contains("open") && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove("open");
-  }
-});
+navBackdrop.addEventListener("click", closeNav);
 
 const sections = document.querySelectorAll("section[id]");
 const navByHref = {};
