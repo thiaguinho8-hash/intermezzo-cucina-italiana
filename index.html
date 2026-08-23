@@ -1517,6 +1517,11 @@ navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
 document.querySelectorAll("[data-nav]").forEach(link => {
   link.addEventListener("click", () => navLinks.classList.remove("open"));
 });
+document.addEventListener("click", (e) => {
+  if (navLinks.classList.contains("open") && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+    navLinks.classList.remove("open");
+  }
+});
 
 const sections = document.querySelectorAll("section[id]");
 const navByHref = {};
