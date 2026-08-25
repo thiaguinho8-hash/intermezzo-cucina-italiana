@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intermezzo — Cucina Italiana | Bruxelles</title>
-<meta name="description" content="Intermezzo, restaurant italien au cœur de Bruxelles (Rue des Princes). Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante. Réservation par WhatsApp.">
+<meta name="description" content="Intermezzo, restaurant italien au cœur de Bruxelles (Rue des Princes), depuis 1985. Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante. Réservation par WhatsApp.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://intermezzo-bruxelles.be/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23142a1e'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='60' font-style='italic' fill='%23c6a15b' text-anchor='middle'%3EI%3C/text%3E%3C/svg%3E">
@@ -444,7 +444,7 @@
   }
   .facts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 18px;
     margin-top: 30px;
   }
@@ -860,7 +860,10 @@
     }
     nav.links.open { transform: translateX(0); }
     .nav-toggle { display: flex; width: 28px; }
-    .facts { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .facts { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .facts div { padding: 14px 4px; }
+    .facts strong { font-size: 1.25rem; }
+    .facts span { font-size: 0.62rem; letter-spacing: 0.5px; }
     section { padding: 80px 0; }
     .lang-switch { order: 2; padding: 2px; }
     .lang-switch button { padding: 6px 6px; font-size: 0.64rem; }
@@ -938,6 +941,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">Benvenuti</div>
       <h2 data-i18n="about_title">Notre Maison</h2>
+      <p data-i18n="about_subtitle">Une trattoria italienne à Bruxelles depuis 1985</p>
     </div>
     <div class="ornament">
       <span class="line"></span>
@@ -956,6 +960,7 @@
         <p data-i18n="about_p2">De la linguine artisanale à l'affogato de fin de repas, chaque plat naît de la même idée : peu d'ingrédients, traités avec respect.</p>
 
         <div class="facts">
+          <div><strong>1985</strong><span data-i18n="fact_since">Depuis</span></div>
           <div><strong>4.3★</strong><span data-i18n="fact_google">Google Reviews</span></div>
           <div><strong>380+</strong><span data-i18n="fact_reviews">Avis</span></div>
           <div><strong>100%</strong><span data-i18n="fact_homemade">Fait Maison</span></div>
@@ -1076,7 +1081,7 @@
       <a href="https://www.instagram.com/intermezzobxl/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.tiktok.com/@intermezzo_brussel" target="_blank" rel="noopener">TikTok</a>
     </div>
-    <div class="fine">© <span id="year"></span> Intermezzo — Cucina Italiana · <span data-i18n="footer_city">Bruxelles</span></div>
+    <div class="fine">© <span id="year"></span> Intermezzo — Cucina Italiana · <span data-i18n="footer_city">Bruxelles</span> · Dal 1985</div>
   </div>
 </footer>
 
@@ -1086,14 +1091,14 @@
 const I18N = {
   fr: {
     meta_title: "Intermezzo — Cucina Italiana | Bruxelles",
-    meta_description: "Intermezzo, cucina italiana au cœur de Bruxelles. Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante.",
+    meta_description: "Intermezzo, cucina italiana au cœur de Bruxelles depuis 1985. Pâtes artisanales, antipasti, vins italiens et aperitivi dans une trattoria élégante.",
     logo_sub: "Cucina Italiana · Bruxelles",
     nav_home: "Accueil",
     nav_about: "La Maison",
     nav_menu: "Menu",
     nav_visit: "Nous Trouver",
     nav_social: "Réseaux",
-    hero_eyebrow: "Ristorante · Bruxelles",
+    hero_eyebrow: "Ristorante · Bruxelles · Dal 1985",
     hero_tagline: "Pâtes artisanales, aperitivi et une cantina italienne au cœur de Bruxelles",
     cta_menu: "Voir le Menu",
     cta_reserve: "Réserver par WhatsApp",
@@ -1102,9 +1107,11 @@ const I18N = {
     status_closed: "Fermé pour le moment",
     status_suffix: "heure de Bruxelles",
     about_title: "Notre Maison",
+    about_subtitle: "Une trattoria italienne à Bruxelles depuis 1985",
     about_quote: "« Une trattoria ne sert pas seulement à manger — elle sert du temps, de la conversation et des souvenirs. »",
-    about_p1: "Rue des Princes, à deux pas du centre de Bruxelles, l'Intermezzo ouvre ses portes comme une pause italienne au milieu de la journée belge. Pâtes fraîches, sauces mijotées longuement et une carte de vins choisie avec soin composent une cucina simple, faite pour être répétée.",
+    about_p1: "Depuis 1985, Rue des Princes, à deux pas du centre de Bruxelles, l'Intermezzo ouvre ses portes comme une pause italienne au milieu de la journée belge. Pâtes fraîches, sauces mijotées longuement et une carte de vins choisie avec soin composent une cucina simple, faite pour être répétée.",
     about_p2: "De la linguine artisanale à l'affogato de fin de repas, chaque plat naît de la même idée : peu d'ingrédients, traités avec respect.",
+    fact_since: "Depuis",
     fact_google: "Google Reviews",
     fact_reviews: "Avis",
     fact_homemade: "Fait Maison",
@@ -1138,14 +1145,14 @@ const I18N = {
   },
   nl: {
     meta_title: "Intermezzo — Cucina Italiana | Brussel",
-    meta_description: "Intermezzo, cucina italiana in het hart van Brussel. Ambachtelijke pasta, antipasti, Italiaanse wijnen en aperitivi in een elegante trattoria.",
+    meta_description: "Intermezzo, cucina italiana in het hart van Brussel sinds 1985. Ambachtelijke pasta, antipasti, Italiaanse wijnen en aperitivi in een elegante trattoria.",
     logo_sub: "Cucina Italiana · Brussel",
     nav_home: "Home",
     nav_about: "Het Huis",
     nav_menu: "Menu",
     nav_visit: "Bezoek Ons",
     nav_social: "Sociale Media",
-    hero_eyebrow: "Ristorante · Brussel",
+    hero_eyebrow: "Ristorante · Brussel · Dal 1985",
     hero_tagline: "Ambachtelijke pasta, aperitivi en een Italiaanse wijnkelder in het hart van Brussel",
     cta_menu: "Bekijk het Menu",
     cta_reserve: "Reserveren via WhatsApp",
@@ -1154,9 +1161,11 @@ const I18N = {
     status_closed: "Nu gesloten",
     status_suffix: "Brusselse tijd",
     about_title: "Ons Huis",
+    about_subtitle: "Een Italiaanse trattoria in Brussel sinds 1985",
     about_quote: "“Een trattoria serveert niet alleen eten — ze serveert tijd, gesprek en herinnering.”",
-    about_p1: "Aan de Rue des Princes, vlak bij het centrum van Brussel, opent Intermezzo zijn deuren als een Italiaanse pauze midden in de Belgische dag. Verse pasta, langzaam gekookte sauzen en een zorgvuldig samengestelde wijnkaart vormen een eenvoudige cucina, gemaakt om te herhalen.",
+    about_p1: "Sinds 1985 opent Intermezzo, aan de Rue des Princes, vlak bij het centrum van Brussel, zijn deuren als een Italiaanse pauze midden in de Belgische dag. Verse pasta, langzaam gekookte sauzen en een zorgvuldig samengestelde wijnkaart vormen een eenvoudige cucina, gemaakt om te herhalen.",
     about_p2: "Van ambachtelijke linguine tot de affogato aan het einde van de maaltijd, elk gerecht ontstaat vanuit hetzelfde idee: weinig ingrediënten, met respect behandeld.",
+    fact_since: "Sinds",
     fact_google: "Google Reviews",
     fact_reviews: "Beoordelingen",
     fact_homemade: "Huisgemaakt",
@@ -1190,14 +1199,14 @@ const I18N = {
   },
   en: {
     meta_title: "Intermezzo — Cucina Italiana | Brussels",
-    meta_description: "Intermezzo, cucina italiana in the heart of Brussels. Handmade pasta, antipasti, Italian wines and aperitivi in an elegant trattoria.",
+    meta_description: "Intermezzo, cucina italiana in the heart of Brussels since 1985. Handmade pasta, antipasti, Italian wines and aperitivi in an elegant trattoria.",
     logo_sub: "Cucina Italiana · Brussels",
     nav_home: "Home",
     nav_about: "About",
     nav_menu: "Menu",
     nav_visit: "Visit Us",
     nav_social: "Social",
-    hero_eyebrow: "Ristorante · Brussels",
+    hero_eyebrow: "Ristorante · Brussels · Dal 1985",
     hero_tagline: "Handmade pasta, aperitivi and an Italian wine cellar in the heart of Brussels",
     cta_menu: "View Menu",
     cta_reserve: "Reserve via WhatsApp",
@@ -1206,9 +1215,11 @@ const I18N = {
     status_closed: "Closed right now",
     status_suffix: "Brussels time",
     about_title: "Our House",
+    about_subtitle: "An Italian trattoria in Brussels since 1985",
     about_quote: "“A trattoria doesn't just serve food — it serves time, conversation and memory.”",
-    about_p1: "On Rue des Princes, just steps from central Brussels, Intermezzo opens its doors as an Italian pause in the middle of the Belgian day. Fresh pasta, slow-simmered sauces and a carefully chosen wine list make up a simple cucina, made to be repeated.",
+    about_p1: "Since 1985, on Rue des Princes, just steps from central Brussels, Intermezzo has opened its doors as an Italian pause in the middle of the Belgian day. Fresh pasta, slow-simmered sauces and a carefully chosen wine list make up a simple cucina, made to be repeated.",
     about_p2: "From handmade linguine to the affogato at the end of the meal, every dish is born from the same idea: few ingredients, treated with respect.",
+    fact_since: "Since",
     fact_google: "Google Reviews",
     fact_reviews: "Reviews",
     fact_homemade: "Homemade",
