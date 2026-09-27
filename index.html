@@ -565,14 +565,6 @@
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0);} }
 
   .panel-head { text-align: center; margin-bottom: 34px; }
-  .menu-banner {
-    display: block;
-    max-width: 420px;
-    width: 100%;
-    margin: 22px auto 0;
-    border: 1px solid rgba(198,161,91,0.4);
-    box-shadow: 0 18px 40px rgba(20,42,30,0.12);
-  }
   .panel-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
@@ -1464,7 +1456,6 @@ function renderMenu(lang) {
       <h3 class="panel-title">${cat.label}</h3>
       ${cat.note ? `<p class="panel-note">${cat.note}</p>` : ""}
       <div class="ornament small"><span class="line"></span><span class="dot"></span><span class="line right"></span></div>
-      ${id === "bruschetta" ? `<img src="bruschette-banner.svg" alt="Le Nostre Bruschette" class="menu-banner">` : ""}
     `;
     panel.appendChild(head);
 
