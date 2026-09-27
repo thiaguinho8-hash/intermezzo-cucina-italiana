@@ -565,6 +565,14 @@
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0);} }
 
   .panel-head { text-align: center; margin-bottom: 34px; }
+  .menu-banner {
+    display: block;
+    max-width: 420px;
+    width: 100%;
+    margin: 22px auto 0;
+    border: 1px solid rgba(198,161,91,0.4);
+    box-shadow: 0 18px 40px rgba(20,42,30,0.12);
+  }
   .panel-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
@@ -1134,8 +1142,9 @@ const I18N = {
     days: { monThu: "Lundi à Jeudi", fri: "Vendredi", sat: "Samedi", sun: "Dimanche" },
     from_word: "à partir de",
     categories: {
-      pasta:     { label: "Pâtes",                note: "Sugo, panna & formaggio" },
-      antipasti: { label: "Antipasti",            note: null },
+      pasta:      { label: "Pâtes",                note: "Sugo, panna & formaggio" },
+      bruschetta: { label: "Bruschette",           note: "Pain grillé, au choix" },
+      antipasti:  { label: "Antipasti",            note: null },
       freddi:    { label: "Plats Froids",         note: "Portion généreuse, à partager" },
       dolci:     { label: "Dolci",                note: "Desserts" },
       aperitivi: { label: "Aperitivi",            note: null },
@@ -1188,8 +1197,9 @@ const I18N = {
     days: { monThu: "Maandag t/m Donderdag", fri: "Vrijdag", sat: "Zaterdag", sun: "Zondag" },
     from_word: "vanaf",
     categories: {
-      pasta:     { label: "Pasta's",                  note: "Sugo, panna & formaggio" },
-      antipasti: { label: "Antipasti",                note: null },
+      pasta:      { label: "Pasta's",                  note: "Sugo, panna & formaggio" },
+      bruschetta: { label: "Bruschetta",               note: "Geroosterd brood, naar keuze" },
+      antipasti:  { label: "Antipasti",                note: null },
       freddi:    { label: "Koude Gerechten",           note: "Groter gerecht, om te delen" },
       dolci:     { label: "Dolci",                     note: "Nagerechten" },
       aperitivi: { label: "Aperitivi",                 note: null },
@@ -1242,8 +1252,9 @@ const I18N = {
     days: { monThu: "Monday to Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" },
     from_word: "from",
     categories: {
-      pasta:     { label: "Pasta",                    note: "Sugo, panna & formaggio" },
-      antipasti: { label: "Antipasti",                note: null },
+      pasta:      { label: "Pasta",                    note: "Sugo, panna & formaggio" },
+      bruschetta: { label: "Bruschetta",               note: "Grilled bread, your choice" },
+      antipasti:  { label: "Antipasti",                note: null },
       freddi:    { label: "Cold Dishes",              note: "Larger portion, to share" },
       dolci:     { label: "Dolci",                    note: "Desserts" },
       aperitivi: { label: "Aperitivi",                note: null },
@@ -1256,7 +1267,7 @@ const I18N = {
 const WHATSAPP_NUMBER = "32497285956";
 
 /* items are language-independent (Italian/French dish names); price is a
-   plain "12,50" string, or ["from", "4,00"] for the bruschette entry */
+   plain "12,50" string, or ["from", "X,XX"] when a dish starts at a price */
 const MENU_ITEMS = {
   pasta: [
     ["Lasagnette all'Emiliana", "19,50", "huile d'olive, bœuf, carottes, céleris"],
@@ -1280,8 +1291,18 @@ const MENU_ITEMS = {
     ["Linguine al Nero di Seppia", "19,00", "tomate, encre de sèche"],
     ["Tortelloni al Formaggio", "17,50", "crème, au 4 fromages"],
   ],
+  bruschetta: [
+    ["Bruschetta al Pomodoro", "4,00", "pain grillé, ail, tomate"],
+    ["Bruschetta al Mascarpone", "4,50", "pain grillé, mascarpone, speck"],
+    ["Bruschetta al Provolone", "4,50", "pain grillé, provolone, salami piquant"],
+    ["Bruschetta alla Napoletana", "5,00", "pain grillé, mozzarella, anchois, olives, câpres"],
+    ["Bruschetta al Gorgonzola", "5,50", "pain grillé, gorgonzola, noix"],
+    ["Bruschetta Afumicata", "5,50", "pain grillé, mozzarella fumée, speck"],
+    ["Bruschetta alla Fontina Tartufata", "6,00", "pain grillé, fontina, speck, crème de truffes"],
+    ["Bruschetta alla Parmigiana", "6,00", "pain grillé, tomates, aubergines, mozzarella"],
+    ["Bruschetta alla Porchetta", "6,50", "pain grillé, porchetta, tomate, mozzarella, champignons"],
+  ],
   antipasti: [
-    ["Bruschette", ["from", "4,00"]],
     ["Assiette de crudités", "7,50"],
     ["Assiette de tomates", "8,00"],
     ["Mozzarella crudités", "9,00"],
@@ -1342,10 +1363,11 @@ const MENU_ITEMS = {
   ],
 };
 
-const CATEGORY_ORDER = ["pasta", "antipasti", "freddi", "dolci", "aperitivi", "digestivi", "bevande"];
+const CATEGORY_ORDER = ["pasta", "bruschetta", "antipasti", "freddi", "dolci", "aperitivi", "digestivi", "bevande"];
 
 const CATEGORY_ICONS = {
   pasta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 12a8 8 0 0 0 16 0"/><path d="M3 12h18"/><path d="M9 4c0 1.5 1 1.5 1 3s-1 1.5-1 3"/><path d="M14 3c0 1.5 1 1.5 1 3s-1 1.5-1 3"/></svg>',
+  bruschetta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c0-5 4-9 9-9s9 4 9 9"/><path d="M3 14h18"/><circle cx="9" cy="10" r="0.8" fill="currentColor" stroke="none"/><circle cx="13" cy="8.3" r="0.8" fill="currentColor" stroke="none"/><circle cx="16" cy="10.5" r="0.8" fill="currentColor" stroke="none"/></svg>',
   antipasti: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3C9 3 4 9 4 17c0 1 0 3 1 4 8 0 15-6 15-15 0-1 0-2-1-3z"/><path d="M8.5 19.5C10 14 13 9.5 19 6.5"/></svg>',
   freddi: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2v20M3.5 6.5l17 11M20.5 6.5l-17 11"/><path d="M12 6l-2-2m2 2l2-2M12 18l-2 2m2-2l2 2M6 9l-2.5-.7M6 9l.7-2.5M18 9l2.5-.7M18 9l-.7-2.5M6 15l-2.5.7M6 15l.7 2.5M18 15l2.5.7M18 15l-.7 2.5"/></svg>',
   dolci: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16L12 4z"/><circle cx="12" cy="8" r="1" fill="currentColor" stroke="none"/></svg>',
@@ -1442,6 +1464,7 @@ function renderMenu(lang) {
       <h3 class="panel-title">${cat.label}</h3>
       ${cat.note ? `<p class="panel-note">${cat.note}</p>` : ""}
       <div class="ornament small"><span class="line"></span><span class="dot"></span><span class="line right"></span></div>
+      ${id === "bruschetta" ? `<img src="bruschette-banner.svg" alt="Le Nostre Bruschette" class="menu-banner">` : ""}
     `;
     panel.appendChild(head);
 
