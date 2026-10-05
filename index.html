@@ -652,6 +652,42 @@
   }
 
   /* ---------- Visite ---------- */
+  #avis { background: var(--cream); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+  .review-card {
+    margin: 0;
+    padding: 28px 26px;
+    background: rgba(255,255,255,0.55);
+    box-shadow: 0 0 0 1px rgba(198,161,91,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .review-stars { color: var(--gold); letter-spacing: 3px; font-size: 1rem; }
+  .review-card blockquote {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.45;
+    color: var(--forest);
+    flex: 1;
+  }
+  .review-card figcaption {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .reviews-grid .review-card:nth-child(2) { transition-delay: 0.1s; }
+  .reviews-grid .review-card:nth-child(3) { transition-delay: 0.2s; }
+  .reviews-grid .review-card:nth-child(4) { transition-delay: 0.3s; }
+
   #visite { background: var(--cream-2); }
   .visite-grid {
     display: grid;
@@ -993,6 +1029,39 @@
   </div>
 </section>
 
+<section id="avis">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Dicono di noi</div>
+      <h2 data-i18n="reviews_title">Ce que disent nos clients</h2>
+      <p data-i18n="reviews_subtitle">Extraits d'avis publiés sur Google</p>
+    </div>
+
+    <div class="reviews-grid">
+      <figure class="review-card reveal">
+        <div class="review-stars" aria-label="5/5">★★★★★</div>
+        <blockquote lang="fr">« C'est notre restaurant fétiche quand on va en ville. On y va depuis près de 40 ans. »</blockquote>
+        <figcaption>Carmen · <span data-i18n="reviews_source">Avis Google</span></figcaption>
+      </figure>
+      <figure class="review-card reveal">
+        <div class="review-stars" aria-label="5/5">★★★★★</div>
+        <blockquote lang="en">“Fantastic pasta, great staff, what can I say. Go and try it, you won't be disappointed.”</blockquote>
+        <figcaption>Peter · <span data-i18n="reviews_source">Avis Google</span></figcaption>
+      </figure>
+      <figure class="review-card reveal">
+        <div class="review-stars" aria-label="5/5">★★★★★</div>
+        <blockquote lang="nl">“Heel lekkere pasta, vriendelijke bediening.”</blockquote>
+        <figcaption>Wim · <span data-i18n="reviews_source">Avis Google</span></figcaption>
+      </figure>
+      <figure class="review-card reveal">
+        <div class="review-stars" aria-label="5/5">★★★★★</div>
+        <blockquote lang="fr">« Les meilleures bruschettas de Bruxelles. Excellent, top »</blockquote>
+        <figcaption>Leandro · <span data-i18n="reviews_source">Avis Google</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section id="visite">
   <div class="container">
     <div class="section-head reveal">
@@ -1115,6 +1184,9 @@ const I18N = {
     fact_google: "Google Reviews",
     fact_reviews: "Avis",
     fact_homemade: "Fait Maison",
+    reviews_title: "Ce que disent nos clients",
+    reviews_subtitle: "Extraits d'avis publiés sur Google",
+    reviews_source: "Avis Google",
     menu_title: "Carte",
     menu_subtitle: "Pâtes, antipasti, dolci et la cantina de l'Intermezzo",
     wine_text: "Notre carte des vins réunit rouges, rosés et blancs italiens — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, entre autres — avec des options biologiques et biodynamiques. La carte complète, avec les prix au verre et à la bouteille, est disponible à table.",
@@ -1170,6 +1242,9 @@ const I18N = {
     fact_google: "Google Reviews",
     fact_reviews: "Beoordelingen",
     fact_homemade: "Huisgemaakt",
+    reviews_title: "Wat onze gasten zeggen",
+    reviews_subtitle: "Fragmenten uit reviews op Google",
+    reviews_source: "Google-review",
     menu_title: "Menukaart",
     menu_subtitle: "Pasta, antipasti, dolci en de cantina van Intermezzo",
     wine_text: "Onze wijnkaart verenigt Italiaanse rode, rosé- en witte wijnen — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, en meer — met biologische en biodynamische opties. De volledige kaart, met prijzen per glas en per fles, is aan tafel beschikbaar.",
@@ -1225,6 +1300,9 @@ const I18N = {
     fact_google: "Google Reviews",
     fact_reviews: "Reviews",
     fact_homemade: "Homemade",
+    reviews_title: "What our guests say",
+    reviews_subtitle: "Excerpts from reviews posted on Google",
+    reviews_source: "Google review",
     menu_title: "Menu",
     menu_subtitle: "Pasta, antipasti, dolci and Intermezzo's cantina",
     wine_text: "Our wine list brings together Italian reds, rosés and whites — Sangiovese, Merlot, Chardonnay, Pinot Grigio, Brunello di Montalcino, among others — with organic and biodynamic options. The full list, with prices by the glass and bottle, is available at the table.",
